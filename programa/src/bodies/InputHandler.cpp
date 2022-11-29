@@ -25,6 +25,7 @@ void InputHandler::readFile(const std::string& filepath) {
     loadFileHeader(file_handler);
     loadWeightsArray(file_handler);
     loadPresentsPairs(file_handler);
+    file_handler.close();
 }
 
 
