@@ -79,7 +79,8 @@ void InputHandler::loadPresentsPairs(std::ifstream &file) {
     unsigned number11, number22;
     while (!file.eof()) {
         getline(file, number1, ' ');
-        getline(file, number2, ' ');
+        getline(file, number2, '\n');
+        if (number1 == "" || number2 == "") continue;
         number11 = std::stoul(number1);
         number22 = std::stoul(number2);
         std::array<unsigned, 2> _temp = {number11, number22};

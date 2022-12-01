@@ -20,5 +20,18 @@ ProblemFactory::createProblemObject(unsigned int presents_number, unsigned int s
     return_object.setArrayLLength(array_L_length);
     return_object.setWeights(weights);
     return_object.setPresentsPairs(presents_pairs);
+
+    for (int i = 0; i < weights.size(); i++) {
+        auto present = Present();
+        present.setWeight(weights[i]);
+
+        for (auto pos : presents_pairs) {
+            if (pos.at(0) == i+1) {
+                present.addIncompatibleGift(pos.at(1));
+            }
+        }
+
+        return_object.addPresent(present);
+    }
     return return_object;
 }

@@ -20,6 +20,11 @@ ProblemData::~ProblemData() {
 };
 
 
+void ProblemData::addPresent(Present _present) {
+    this->presents.push_back(_present);
+}
+
+
 void ProblemData::setPresentsQuantity(unsigned int quantity) {
     this->presents_quantity = quantity;
 }

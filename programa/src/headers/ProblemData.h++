@@ -10,6 +10,7 @@
 
 #include <vector>
 #include <array>
+#include "Present.h++"
 
 class ProblemData {
 private:
@@ -17,6 +18,7 @@ private:
     unsigned sleds_quantity;
     unsigned max_weight;
     unsigned array_L_length;
+    std::vector<Present> presents;
     std::vector<unsigned> weights;
     std::vector<std::array<unsigned, 2>> presents_pairs;
 
@@ -36,6 +38,8 @@ public:
     unsigned getArrayLLength();
     std::vector<unsigned>& getWeights();
     std::vector<std::array<unsigned, 2>>& getPresentsPairs();
+
+    void addPresent(Present _present);
 };
 
 
