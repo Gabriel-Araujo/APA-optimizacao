@@ -1,0 +1,24 @@
+/// Compilado para C++ 17
+/// Autores:
+///         - Gabriel Souza Cruz Araujo
+///
+/// Data de Criação: 01/12/2022
+
+#include "../headers/ProblemFactory.h++"
+
+ProblemData
+ProblemFactory::createProblemObject(unsigned int presents_number, unsigned int sleds_number,
+                                    unsigned int max_weight, unsigned int array_L_length,
+                                    std::vector<unsigned int> weights,
+                                    std::vector<std::array<unsigned int, 2>> presents_pairs) {
+
+    auto return_object = ProblemData();
+
+    return_object.setPresentsQuantity(presents_number);
+    return_object.setSleds_quantity(sleds_number);
+    return_object.setMaxWeight(max_weight);
+    return_object.setArrayLLength(array_L_length);
+    return_object.setWeights(weights);
+    return_object.setPresentsPairs(presents_pairs);
+    return return_object;
+}

@@ -27,8 +27,8 @@ struct FileHeader {
 class InputHandler {
 private:
     FileHeader fileHeader;
-    std::vector<unsigned long> weights;
-    std::vector<std::array<unsigned long, 2>> presents_pairs;
+    std::vector<unsigned> weights;
+    std::vector<std::array<unsigned, 2>> presents_pairs;
 
 
 
@@ -37,11 +37,18 @@ public:
     ~InputHandler();
 
 
-    void readFile(const std::string& filepath);
+    void readFile(const std::string& filename);
 
     void loadFileHeader(std::ifstream &file);
     void loadWeightsArray(std::ifstream &file);
     void loadPresentsPairs(std::ifstream &file);
+
+    unsigned getPresentsNumber();
+    unsigned getSledsNumber();
+    unsigned getMaxWeight();
+    unsigned getArrayLLength();
+    std::vector<unsigned> getWeights();
+    std::vector<std::array<unsigned, 2>> getPresentsPairs();
 };
 
 

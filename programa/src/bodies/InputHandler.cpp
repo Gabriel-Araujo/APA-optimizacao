@@ -20,8 +20,8 @@ InputHandler::~InputHandler() {
 }
 
 
-void InputHandler::readFile(const std::string& filepath) {
-    std::ifstream file_handler(filepath, std::ifstream::in);
+void InputHandler::readFile(const std::string& filename) {
+    std::ifstream file_handler(filename, std::ifstream::in);
     loadFileHeader(file_handler);
     loadWeightsArray(file_handler);
     loadPresentsPairs(file_handler);
@@ -76,12 +76,43 @@ void InputHandler::loadWeightsArray(std::ifstream &file) {
 
 void InputHandler::loadPresentsPairs(std::ifstream &file) {
     std::string number1, number2;
+    unsigned number11, number22;
     while (!file.eof()) {
         getline(file, number1, ' ');
         getline(file, number2, ' ');
-        std::array<unsigned long, 2> _temp{std::stoul(number1), std::stoul(number2)};
+        number11 = std::stoul(number1);
+        number22 = std::stoul(number2);
+        std::array<unsigned, 2> _temp = {number11, number22};
         this->presents_pairs.push_back(_temp);
     }
 }
 
+
+unsigned InputHandler::getPresentsNumber() {
+    return this->fileHeader.presents_number;
+}
+
+
+unsigned InputHandler::getSledsNumber() {
+    return this->fileHeader.sleds_number;
+}
+
+
+unsigned int InputHandler::getMaxWeight() {
+    return this->fileHeader.max_weight;
+}
+
+
+unsigned int InputHandler::getArrayLLength() {
+    return this->fileHeader.array_L_length;
+}
+
+
+std::vector<unsigned> InputHandler::getWeights() {
+    return this->weights;
+}
+
+std::vector<std::array<unsigned, 2>> InputHandler::getPresentsPairs() {
+    return this->presents_pairs;
+}
 
