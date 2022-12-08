@@ -10,6 +10,7 @@
 #include <string>
 
 #include "headers/InputHandler.h++"
+#include "headers/OutputHandler.h++"
 #include "headers/guloso.h++"
 
 const std::string FILENAME = "../instances/n30_k150_A.txt";
@@ -21,6 +22,6 @@ int main() {
 
     auto a = ordenacao.organaziSled(input.getWeights(), input.getSledsNumber(), input.getMaxWeight(), input.getPresentsPairsMatrix());
 
-    std::cout << "Hello, World!" << std::endl;
+    OutputHandler::showInTerminal(a);
     return 0;
 }
