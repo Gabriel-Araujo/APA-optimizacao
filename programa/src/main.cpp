@@ -12,15 +12,18 @@
 #include "headers/InputHandler.h++"
 #include "headers/ProblemData.h++"
 #include "headers/ProblemFactory.h++"
+#include "headers/guloso.h++"
 
 const std::string FILENAME = "n30_k150_A.txt";
+//TODO remover as classes ProblemData e ProblemFactory por causar redundância.
 
 int main() {
     InputHandler input = InputHandler();
+    guloso ordenacao = guloso();
     input.readFile(FILENAME);
 
-    //ProblemData info = ProblemFactory::createProblemObject(input.getPresentsNumber(), input.getSledsNumber(), input.getMaxWeight(), input.getArrayLLength(), input.getWeights(), input.getPresentsPairs()); // só funciona com lista de adjacencia. Falta implementar com matriz de adjacencia.
-    ProblemData info = ProblemFactory::createProblemObjectWithMatrix(input.getPresentsNumber(), input.getSledsNumber(), input.getMaxWeight(), input.getArrayLLength(), input.getWeights(), input.getPresentsPairsMatrix());
+    auto a = ordenacao.organaziSled(input.getWeights(), input.getSledsNumber(), input.getMaxWeight(), input.getPresentsPairsMatrix());
+
     std::cout << "Hello, World!" << std::endl;
     return 0;
 }

@@ -13,6 +13,7 @@
 class Present {
 private:
     unsigned weight;
+    unsigned id; // posição do presente no array inicial
     std::vector<unsigned> incompatible_gifts;
 
 public:
@@ -23,6 +24,9 @@ public:
 
     unsigned getWeight();
     std::vector<unsigned> getIncompatibleGifts(); // lista de Adjacência
+    unsigned int getID();
+
+    void setID(unsigned int pos);
 };
 
 
