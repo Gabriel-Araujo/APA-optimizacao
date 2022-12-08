@@ -10,12 +10,9 @@
 #include <string>
 
 #include "headers/InputHandler.h++"
-#include "headers/ProblemData.h++"
-#include "headers/ProblemFactory.h++"
 #include "headers/guloso.h++"
 
 const std::string FILENAME = "n30_k150_A.txt";
-//TODO remover as classes ProblemData e ProblemFactory por causar redundância.
 
 int main() {
     InputHandler input = InputHandler();
