@@ -29,7 +29,7 @@ private:
     FileHeader fileHeader;
     std::vector<unsigned> weights;
     std::vector<std::array<unsigned, 2>> presents_pairs;
-
+    std::vector<std::vector<bool>> presents_pair_matrix;
 
 
 public:
@@ -42,6 +42,7 @@ public:
     void loadFileHeader(std::ifstream &file);
     void loadWeightsArray(std::ifstream &file);
     void loadPresentsPairs(std::ifstream &file);
+    void loadPresentsPairsMatrix(std::ifstream &file);
 
     unsigned getPresentsNumber();
     unsigned getSledsNumber();
@@ -49,6 +50,8 @@ public:
     unsigned getArrayLLength();
     std::vector<unsigned> getWeights();
     std::vector<std::array<unsigned, 2>> getPresentsPairs();
+
+    std::vector<std::vector<bool>> getPresentsPairsMatrix();
 };
 
 

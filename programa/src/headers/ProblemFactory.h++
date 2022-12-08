@@ -17,6 +17,11 @@ public:
     static ProblemData createProblemObject(unsigned presents_number, unsigned sleds_number, unsigned max_weight,
                                            unsigned array_L_length, std::vector<unsigned> weights,
                                            std::vector<std::array<unsigned, 2>> presents_pairs);
+
+    static ProblemData
+    createProblemObjectWithMatrix(unsigned int presents_number, unsigned int sleds_number, unsigned int max_weight,
+                                  unsigned int array_L_length, std::vector<unsigned int> weights,
+                                  std::vector<std::vector<bool>> presents_pairs_matrix);
 };
 
 

@@ -54,6 +54,10 @@ void ProblemData::setPresentsPairs(const std::vector<std::array<unsigned int, 2>
     this->presents_pairs = presents_pairs_list;
 }
 
+void ProblemData::setPresentsPairsMatrix(const std::vector<std::vector<bool>>& presents_pairs_list) {
+    this->presents_pairs_matrix = presents_pairs_list;
+}
+
 
 unsigned ProblemData::getPresentsQuantity() {
     return this->presents_quantity;

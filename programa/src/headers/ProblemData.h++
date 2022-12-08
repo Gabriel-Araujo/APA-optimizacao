@@ -21,6 +21,8 @@ private:
     std::vector<Present> presents;
     std::vector<unsigned> weights;
     std::vector<std::array<unsigned, 2>> presents_pairs;
+    std::vector<std::vector<bool>> presents_pairs_matrix;
+    std::vector<std::vector<bool>> matriz_adjacencia;
 
 public:
     ProblemData();
@@ -40,6 +42,8 @@ public:
     std::vector<std::array<unsigned, 2>>& getPresentsPairs();
 
     void addPresent(Present _present);
+
+    void setPresentsPairsMatrix(const std::vector<std::vector<bool>> &presents_pairs_list);
 };
 
 
