@@ -12,7 +12,7 @@
 #include "headers/InputHandler.h++"
 #include "headers/guloso.h++"
 
-const std::string FILENAME = "n30_k150_A.txt";
+const std::string FILENAME = "../instances/n30_k150_A.txt";
 
 int main() {
     InputHandler input = InputHandler();

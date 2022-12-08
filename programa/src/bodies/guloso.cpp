@@ -23,11 +23,8 @@ std::vector<Treno> guloso::createSleds(unsigned weight, unsigned quantity) {
 /// Se for incompativel retorna false.
 /// Se for compativel returna true.
 bool guloso::verifyCompatibility(Present &present, Treno &treno, std::vector<std::vector<bool>> &presents_pair_matrix) {
-    bool result;
     for (auto present_in_sled : treno.presents_list) {
-        unsigned row = present.getID()-1;
-        unsigned column = present_in_sled.getID()-1;
-        if (presents_pair_matrix.at(row).at(column))return false;
+        if (presents_pair_matrix.at(present.getID()-1).at(present_in_sled.getID()-1))return false;
     }
     return true;
 }
@@ -51,7 +48,6 @@ std::vector<Treno> guloso::organaziSled(std::vector<unsigned int> weight_list, u
 
     while (!presents_list.empty()) {
         Present present = presents_list.back();
-        present = FactoryPresent::createPresent(present.getID(), present.getWeight());
         presents_list.pop_back();
 
         for (auto &treno : trenos) {

@@ -91,7 +91,7 @@ void InputHandler::loadPresentsPairs(std::ifstream &file) {
 
 
 void InputHandler::loadPresentsPairsMatrix(std::ifstream &file) {
-    std::vector<std::vector<bool>> return_matrix (this->fileHeader.presents_number, std::vector<bool> (this->fileHeader.presents_number, false));
+    std::vector<std::vector<bool>> return_matrix (this->fileHeader.presents_number+1, std::vector<bool> (this->fileHeader.presents_number+1, false));
     std::string number_1, number_2;
     unsigned number_11, number_22;
 
