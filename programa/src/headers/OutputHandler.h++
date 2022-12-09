@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include "guloso.h++"
+#include "Treno.h"
 
 class OutputHandler {
 public:

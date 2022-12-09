@@ -5,6 +5,7 @@
 #include <utility>
 
 #include "../headers/guloso.h++"
+#include "../headers/Solution.h"
 
 
 std::list<Present> guloso::generatePresentList(std::vector<unsigned int> weight_list) {
@@ -17,7 +18,7 @@ std::list<Present> guloso::generatePresentList(std::vector<unsigned int> weight_
 
 
 std::vector<Treno> guloso::createSleds(unsigned weight, unsigned quantity) {
-    return std::vector<Treno> (quantity, Treno {weight, std::vector<Present> (0)});
+    return std::vector<Treno> (quantity, Treno(weight, std::vector<Present> (0)));
 }
 
 /// Se for incompativel retorna false.
@@ -41,9 +42,11 @@ std::vector<Treno> guloso::remove_unused_sled(std::vector<Treno> &trenos, unsign
 }
 
 
-std::vector<Treno> guloso::organaziSled(std::vector<unsigned int> weight_list, unsigned sleds_number, unsigned max_weight, std::vector<std::vector<bool>> presents_pair_matrix) {
+Solution guloso::organaziSled(std::vector<unsigned int> weight_list, unsigned sleds_number, unsigned max_weight, std::vector<std::vector<bool>> presents_pair_matrix) {
     std::vector<Treno> trenos = guloso::createSleds(max_weight, sleds_number);
     std::list<Present> presents_list = guloso::generatePresentList(weight_list);
+    std::vector<Present> sorted_presents(presents_list.size());
+    Solution solution = Solution();
     bool added = false;
 
     while (!presents_list.empty()) {
@@ -51,21 +54,24 @@ std::vector<Treno> guloso::organaziSled(std::vector<unsigned int> weight_list, u
         presents_list.pop_back();
 
         for (auto &treno : trenos) {
-            if (treno.max_weight != 0 && present.getWeight() <= treno.max_weight) {
+            if (treno.max_weight != 0 && present.getWeight() <= treno.max_weight ) {
                 if(verifyCompatibility(present, treno, presents_pair_matrix)) {
                     treno.presents_list.push_back(present);
                     treno.max_weight -= present.getWeight();
+                    sorted_presents.push_back(present);
                     added = true;
                     break;
                 }
             }
-            if (!added) {
+        }
+        if (!added) {
                 trenos.push_back(Treno{max_weight, std::vector<Present> (0)});
                 trenos.back().presents_list.push_back(present);
             }
-        }
     }
-return remove_unused_sled(trenos, max_weight);
+    solution.orderly_presents = sorted_presents;
+    solution.trenos = remove_unused_sled(trenos, max_weight);
+    return solution;
 }
 
 
@@ -99,6 +105,8 @@ std::vector<Treno> guloso::organaziSledUsingWeight(std::vector<unsigned int> wei
         presents_list.remove(heaviest);
         heaviest = presents_list.front();
     }
-
-    return remove_unused_sled(trenos, max_weight);
+    
+    solution.orderly_presents = sorted_presents;
+    solution.trenos = remove_unused_sled(trenos, max_weight);
+    return solution;
 }

@@ -13,6 +13,7 @@
 #include "headers/InputHandler.h++"
 #include "headers/OutputHandler.h++"
 #include "headers/guloso.h++"
+#include "headers/Treno.h"
 
 const std::string FILENAME = "../instances/n30_k150_A.txt";
 
@@ -27,7 +28,7 @@ int main() {
 
     auto int_s = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 
-    OutputHandler::showInTerminal(a);
+    OutputHandler::showInTerminal(a.trenos);
     std::cout << "tempo de execução: " << int_s.count() << "µs";
     return 0;
 }
