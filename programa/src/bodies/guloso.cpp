@@ -75,10 +75,12 @@ Solution guloso::organaziSled(std::vector<unsigned int> weight_list, unsigned sl
 }
 
 
-std::vector<Treno> guloso::organaziSledUsingWeight(std::vector<unsigned int> weight_list, unsigned sleds_number, unsigned max_weight, std::vector<std::vector<bool>> presents_incomp_pairs_matrix) {
+Solution guloso::organaziSledUsingWeight(std::vector<unsigned int> weight_list, unsigned sleds_number, unsigned max_weight, std::vector<std::vector<bool>> presents_incomp_pairs_matrix) {
     std::vector<Treno> trenos = guloso::createSleds(max_weight, sleds_number);
     std::list<Present> presents_list = guloso::generatePresentList(weight_list);
     Present heaviest = presents_list.front();
+    std::vector<Present> sorted_presents(presents_list.size());
+    Solution solution = Solution();
     bool added = false;
 
     while (!presents_list.empty()) {
@@ -93,6 +95,7 @@ std::vector<Treno> guloso::organaziSledUsingWeight(std::vector<unsigned int> wei
                 if (verifyCompatibility(heaviest, treno, presents_incomp_pairs_matrix)) {
                     treno.presents_list.push_back(heaviest);
                     treno.max_weight -= heaviest.getWeight();
+                    sorted_presents.push_back(heaviest);
                     added = true;
                     break;
                 }
