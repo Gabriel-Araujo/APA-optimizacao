@@ -22,11 +22,6 @@ void Present::setID(unsigned int pos) {
 }
 
 
-void Present::addIncompatibleGift(unsigned int position) {
-    this->incompatible_gifts.push_back(position);
-}
-
-
 unsigned int Present::getWeight() {
     return this->weight;
 }
@@ -37,6 +32,6 @@ unsigned int Present::getID() {
 }
 
 
-std::vector<unsigned int> Present::getIncompatibleGifts() {
-    return this->incompatible_gifts;
+bool Present::operator==(const Present &p) const {
+    return this->id == p.id;
 }

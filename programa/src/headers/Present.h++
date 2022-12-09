@@ -14,16 +14,15 @@ class Present {
 private:
     unsigned weight;
     unsigned id; // posição do presente no array inicial
-    std::vector<unsigned> incompatible_gifts;
+
 
 public:
     Present();
+    bool operator == (const Present& p) const;
 
     void setWeight(unsigned weight);
-    void addIncompatibleGift(unsigned position);
 
-    unsigned getWeight();
-    std::vector<unsigned> getIncompatibleGifts(); // lista de Adjacência
+    unsigned getWeight(); // lista de Adjacência
     unsigned int getID();
 
     void setID(unsigned int pos);
