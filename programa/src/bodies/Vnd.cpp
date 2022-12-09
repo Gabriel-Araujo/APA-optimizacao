@@ -1,26 +1,44 @@
-#include "Vnd.h"
+#include "../headers/Vnd.h"
+#include "../headers/Solution.h"
 
 Vnd::Vnd()
 {
 
 }
 
-std::vector<Present> Vnd::performVnd(Solution solution)
+int Vnd::swap(){
+
+}
+
+int Vnd::two_opt(){
+
+}
+
+int Vnd::re_insertion(){
+
+}
+
+std::vector<Present> Vnd::performVnd(Solution solv)
 {
     int k = 1;
+    int new_solution = 0;
     while (k <= 3)
     {
         switch (k)
         {
         case 1:
-            swap();
+            new_solution = swap();
             break;
         case 2:
-            two_opt();
+            new_solution = two_opt();
             break;
         case 3:
-            re_insertion();
+            new_solution = re_insertion();
             break;
+        }
+        if(solv.solution > new_solution){
+            solv.solution = new_solution;
+            k++;
         }
     }
     

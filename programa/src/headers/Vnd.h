@@ -3,17 +3,17 @@
 
 #pragma once
 
-#include <Solution.h>
+#include "../headers/Solution.h"
 
 class Vnd {
 
 public:
     Vnd();
 
-    std::vector<Present> performVnd(Solution solution);
-    std::vector<Present> swap();
-    std::vector<Present> two_opt();
-    std::vector<Present> re_insertion();
+    std::vector<Present> performVnd(Solution solv);
+    int swap();
+    int two_opt();
+    int re_insertion();
 
 private:
 

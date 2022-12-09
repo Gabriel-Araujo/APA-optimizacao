@@ -5,7 +5,7 @@
 #include <utility>
 
 #include "../headers/guloso.h++"
-#include <Solution.h>
+#include "../headers/Solution.h"
 
 
 std::vector<Present> guloso::generatePresentList(std::vector<unsigned int> weight_list) {

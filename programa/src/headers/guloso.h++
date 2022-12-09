@@ -5,13 +5,9 @@
 #ifndef APA_GULOSO_H
 #define APA_GULOSO_H
 
+#include "Solution.h"
 #include "FactoryPresent.h++"
 #include "Present.h++"
-
-struct Treno {
-    unsigned max_weight;
-    std::vector<Present> presents_list;
-};
 
 class guloso {
 private:
