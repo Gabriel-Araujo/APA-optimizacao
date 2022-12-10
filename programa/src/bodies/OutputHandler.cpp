@@ -18,3 +18,18 @@ void OutputHandler::showInTerminal(const std::vector<Treno>& trenos) {
         std::cout << std::endl;
     }
 }
+
+void OutputHandler::showInTerminal(const Solution& trenos) {
+    auto _trenos = trenos.trenos;
+    std::cout << "Quantidade de trenos: " << _trenos.size() << std::endl;
+    for (int treno = 0; treno < _trenos.size(); treno++) {
+        Treno __treno = _trenos.at(treno);
+        std::cout << "Treno " << treno+1 << std::endl;
+        std::cout << "Peso atual: " << __treno.max_weight << std::endl;
+
+        for (auto present : __treno.presents_list) {
+            std::cout << "Presente " << present.getID() << ", peso " << present.getWeight() << std::endl;
+        }
+        std::cout << std::endl;
+    }
+}

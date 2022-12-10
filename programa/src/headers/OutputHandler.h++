@@ -13,6 +13,7 @@
 class OutputHandler {
 public:
     static void showInTerminal(const std::vector<Treno>& trenos);
+    static void showInTerminal(const Solution& trenos);
 };
 
 
