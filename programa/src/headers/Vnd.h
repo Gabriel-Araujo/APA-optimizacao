@@ -14,9 +14,9 @@ public:
     Vnd(InputHandler input);
 
     std::vector<Present> performVnd(Solution solv);
-    Solution swap(Solution solution_atual);
-    Solution two_opt(Solution solution_atual);
-    Solution re_insertion(Solution solution_atual);
+    unsigned swap(Solution &solution_atual);
+    unsigned two_opt(Solution &solution_atual);
+    unsigned re_insertion(Solution &solution_atual);
 
 private:
     InputHandler input;

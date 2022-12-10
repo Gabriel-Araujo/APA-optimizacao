@@ -53,6 +53,7 @@ Solution guloso::organaziSled(Solution solve) {
     std::vector<Present> presents_list = solve.get_presents();
     std::vector<std::vector<bool>> pairs_matrix = this->input.getPresentsPairsMatrix();
     Solution solution = Solution();
+    std::reverse(presents_list.begin(), presents_list.end());
     bool added = false;
 
     while (!presents_list.empty()) {
@@ -70,7 +71,7 @@ Solution guloso::organaziSled(Solution solve) {
             }
         }
         if (!added) {
-                trenos.push_back(Treno(this->input.getMaxWeight(), std::vector<Present> (0)));
+                trenos.emplace_back(this->input.getMaxWeight(), std::vector<Present> (0));
                 trenos.back().presents_list.push_back(present);
         }
     }
@@ -78,7 +79,7 @@ Solution guloso::organaziSled(Solution solve) {
     return solution;
 }
 
-std::vector<Treno> guloso::organaziSledUsingWeight(std::vector<unsigned int> weight_list, unsigned int sleds_number, unsigned int max_weight, std::vector<std::vector<bool>> presents_incomp_pairs_matrix) {
+Solution guloso::organaziSledUsingWeight(std::vector<unsigned int> weight_list, unsigned int sleds_number, unsigned int max_weight, std::vector<std::vector<bool>> presents_incomp_pairs_matrix) {
     std::vector<Treno> trenos = guloso::createSleds(max_weight, sleds_number);
     std::list<Present> presents_list = guloso::generatePresentList(weight_list);
     Present heaviest = presents_list.front();
@@ -105,7 +106,7 @@ std::vector<Treno> guloso::organaziSledUsingWeight(std::vector<unsigned int> wei
             }
         }
         if (!added) {
-            trenos.push_back(Treno{max_weight, std::vector<Present> (0)});
+            trenos.emplace_back(max_weight, std::vector<Present> (0));
             trenos.back().presents_list.push_back(heaviest);
         }
         presents_list.remove(heaviest);
@@ -114,5 +115,5 @@ std::vector<Treno> guloso::organaziSledUsingWeight(std::vector<unsigned int> wei
     
     solution.presents = sorted_presents;
     solution.trenos = remove_unused_sled(trenos, max_weight);
-    return solution.trenos;
+    return solution;
 }

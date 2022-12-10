@@ -29,7 +29,7 @@ public:
 
     std::vector<Treno> remove_unused_sled(std::vector<Treno> &trenos, unsigned int max_weight);
 
-    std::vector<Treno>organaziSledUsingWeight(std::vector<unsigned int> weight_list, unsigned int sleds_number, unsigned int max_weight,
+    Solution organaziSledUsingWeight(std::vector<unsigned int> weight_list, unsigned int sleds_number, unsigned int max_weight,
                             std::vector<std::vector<bool>> presents_incomp_pairs_matrix);
 
     unsigned long getSledsNumber();
