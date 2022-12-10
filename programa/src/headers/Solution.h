@@ -12,12 +12,11 @@ class Solution
 public:
     Solution();
 
-    int solution;
     std::vector<Present> presents;
-    std::vector<Treno> trenos;  // trenos.size() eh o numero objetivo
+    std::vector<Treno> trenos;  
 
-    int get_num_trenos(std::vector<Treno> );
-    int get_num_present(std::vector<Present> );
+    int get_num_trenos();    // Numero objetivo
+    int get_num_present();
     std::vector<Treno> get_trenos();
     std::vector<Present> get_presents();
 

@@ -19,9 +19,9 @@ const std::string FILENAME = "../instances/n30_k150_A.txt";
 
 int main() {
     InputHandler input = InputHandler();
-    guloso ordenacao = guloso();
     input.readFile(FILENAME);
-
+    guloso ordenacao = guloso(input);
+    
     auto start = std::chrono::high_resolution_clock::now();
     auto a = ordenacao.organaziSledUsingWeight(input.getWeights(), input.getSledsNumber(), input.getMaxWeight(), input.getPresentsPairsMatrix());
     auto end = std::chrono::high_resolution_clock::now();
