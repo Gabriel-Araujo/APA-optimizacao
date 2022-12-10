@@ -5,15 +5,16 @@
 
 #include "../headers/Solution.h"
 
+
 class Vnd {
 
 public:
     Vnd();
 
     std::vector<Present> performVnd(Solution solv);
-    int swap();
-    int two_opt();
-    int re_insertion();
+    int swap(Solution );
+    int two_opt(Solution );
+    int re_insertion(Solution );
 
 private:
 
