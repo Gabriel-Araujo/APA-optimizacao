@@ -15,14 +15,18 @@
 #include "headers/guloso.h++"
 #include "headers/Vnd.h"
 
-const std::string FILENAME = "../instances/n120_k150_B.txt";
+std::string FILENAME = "";
 
 int main() {
     InputHandler input = InputHandler();
-    input.readFile(FILENAME);
     guloso ordenacao = guloso(input);
     Vnd busca_local = Vnd();
-    
+
+    std::cout << "escreva o nome/caminho do arquivo" << std::endl;
+    std::cin >> FILENAME;
+
+    input.readFile(FILENAME);
+
     auto start = std::chrono::high_resolution_clock::now();
     auto a = ordenacao.organaziSledUsingWeight(input.getWeights(), input.getSledsNumber(), input.getMaxWeight(), input.getPresentsPairsMatrix());
     auto end = std::chrono::high_resolution_clock::now();
