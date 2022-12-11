@@ -103,6 +103,7 @@ void InputHandler::loadPresentsPairsMatrix(std::ifstream &file) {
         number_22 = std::stoul(number_2);
 
         return_matrix.at(number_11).at(number_22) = true;
+        return_matrix.at(number_22).at(number_11) = true;
     }
     this->presents_pair_matrix = return_matrix;
 }
