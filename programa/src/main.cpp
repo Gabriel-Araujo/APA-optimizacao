@@ -26,11 +26,24 @@ int main() {
     auto start = std::chrono::high_resolution_clock::now();
     auto a = ordenacao.organaziSledUsingWeight(input.getWeights(), input.getSledsNumber(), input.getMaxWeight(), input.getPresentsPairsMatrix());
     auto end = std::chrono::high_resolution_clock::now();
-    OutputHandler::showInTerminal(a.get_trenos());
     auto int_s = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    auto b = busca_local.performVnd(&a);
 
-    OutputHandler::showInTerminal(b);
-    std::cout << "tempo de execucao: " << int_s.count() << "ms";
+
+    std::cout << "resultados do algoritmo guloso:" << std::endl;
+    std::cout << "tempo de execucao: " << int_s.count() << " microsegundos" << std::endl;
+    std::cout << "quantidade de trenos: " << a.trenos.size() << std::endl;
+    //OutputHandler::showInTerminal(a.get_trenos());
+
+
+    auto start2 = std::chrono::high_resolution_clock::now();
+    busca_local.performVnd(&a);
+    auto end2 = std::chrono::high_resolution_clock::now();
+    auto int_s2 = std::chrono::duration_cast<std::chrono::microseconds>(end2 - start2);
+
+
+    std::cout << "resultados do algoritmo VND:" << std::endl;
+    std::cout << "tempo de execucao: " << int_s2.count() << " microsegundos" << std::endl;
+    std::cout << "quantidade de trenos: " << a.trenos.size() << std::endl;
+    //OutputHandler::showInTerminal(a.trenos);
     return 0;
 }
