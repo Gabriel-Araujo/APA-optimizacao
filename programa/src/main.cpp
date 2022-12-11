@@ -15,7 +15,7 @@
 #include "headers/guloso.h++"
 #include "headers/Vnd.h"
 
-const std::string FILENAME = "../instances/n30_k150_A.txt";
+const std::string FILENAME = "../instances/n30_k150_C.txt";
 
 int main() {
     InputHandler input = InputHandler();
@@ -26,12 +26,11 @@ int main() {
     auto start = std::chrono::high_resolution_clock::now();
     auto a = ordenacao.organaziSledUsingWeight(input.getWeights(), input.getSledsNumber(), input.getMaxWeight(), input.getPresentsPairsMatrix());
     auto end = std::chrono::high_resolution_clock::now();
-
+    OutputHandler::showInTerminal(a.get_trenos());
     auto int_s = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
     auto b = busca_local.performVnd(&a);
-    //OutputHandler::showInTerminal(a.get_trenos());
-    //Vnd::re_insertion(&a);
-    //OutputHandler::showInTerminal(b);
+
+    OutputHandler::showInTerminal(b);
     std::cout << "tempo de execucao: " << int_s.count() << "ms";
     return 0;
 }

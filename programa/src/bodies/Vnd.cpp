@@ -35,6 +35,7 @@ unsigned Vnd::swap(Solution &solut){
     return 2;
 }
 
+
 unsigned Vnd::two_opt(Solution &solut){
 //    Solution new_solution;
 //    guloso guloso_algoritmo = guloso(this->input);
@@ -81,13 +82,47 @@ return 1;
 
 
 unsigned Vnd::re_insertion(Solution *solut) {
+    std::vector<Treno> old_solutuon = solut->get_trenos();
+
+    for (int treno_removido_index = 0; treno_removido_index < solut->get_num_trenos(); treno_removido_index++) {
+        for (int treno_index = 0; treno_index < solut->get_num_trenos(); treno_index++) {
+            if (treno_index == treno_removido_index) continue;
+            unsigned peso_dos_itens = solut->max_weight - solut->trenos.at(treno_removido_index).max_weight;
+            unsigned peso_disponivel = solut->trenos.at(treno_index).max_weight;
+
+            if (peso_dos_itens <= peso_disponivel) {
+                if (verificar_compatibilidade_presentes(solut->trenos.at(treno_removido_index), solut->trenos.at(treno_index), solut->get_pair_matrix())) {
+                    for (auto presente : solut->trenos.at(treno_removido_index).presents_list) {
+                        solut->trenos.at(treno_index).presents_list.push_back(presente);
+                    }
+                    solut->trenos.at(treno_removido_index).max_weight = solut->max_weight;
+                    solut->trenos = guloso::remove_unused_sled(solut->trenos, solut->max_weight);
+                    return -1;
+                }
+            }
+        }
+    }
+    return 1;
+}
+
+
+bool Vnd::verificar_compatibilidade_presentes(Treno &treno, Treno &treno2, std::vector<std::vector<bool>> matrix) {
+    for (auto presente : treno.presents_list) {
+        if (!guloso::verifyCompatibility(presente, treno, matrix)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+unsigned Vnd::_2_opt(Solution *solut) {
     std::vector<Treno> old_solution = solut->get_trenos();
 
     for (int t = 0; t < solut->trenos.size(); t++) {
         distribuir_itens(&solut->trenos.at(t), &solut->trenos, solut->get_pair_matrix());
         solut->trenos = guloso::remove_unused_sled(solut->trenos, solut->max_weight);
         if (solut->trenos.size() < old_solution.size()) {
-            return -2;
+            return 0;
         }
         solut->trenos.swap(old_solution);
     }
@@ -111,19 +146,17 @@ void Vnd::distribuir_itens(Treno *treno, std::vector<Treno> *trenos, std::vector
     }
 }
 
+
 Solution Vnd::performVnd(Solution *solv)
 {
-    unsigned k = 1;
+    unsigned k = 2;
     Solution actual_solution;
     while (k <= 3)
     {
         switch(k)
         {
-        case 1:
-            k += swap(*solv);
-            break;
         case 2:
-            k += two_opt(*solv);
+            k += _2_opt(solv);
             break;
         case 3:
             k += re_insertion(solv);
