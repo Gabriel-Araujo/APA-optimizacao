@@ -16,12 +16,13 @@ public:
     Solution performVnd(Solution solv);
     unsigned swap(Solution &solution_atual);
     unsigned two_opt(Solution &solution_atual);
-    unsigned re_insertion(Solution &solution_atual);
+    static unsigned int re_insertion(Solution *solut);
 
 private:
     InputHandler input;
 
-    unsigned int re_insertion2(Solution &solut);
+    static void distribuir_itens(Treno *treno, std::vector<Treno> *trenos, std::vector<std::vector<bool>> matrix);
+
 };
 
 #endif

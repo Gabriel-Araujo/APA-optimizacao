@@ -17,6 +17,7 @@ public:
 
     void setMaxWeight(unsigned weight);
     unsigned getMaxWeight();
+    Present removerPresente(unsigned int present_id);
 
 private:
 

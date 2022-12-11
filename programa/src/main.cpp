@@ -15,7 +15,7 @@
 #include "headers/guloso.h++"
 #include "headers/Vnd.h"
 
-const std::string FILENAME = "../instances/n400_k200_B.txt";
+const std::string FILENAME = "../instances/n30_k150_A.txt";
 
 int main() {
     InputHandler input = InputHandler();
@@ -28,9 +28,12 @@ int main() {
     auto end = std::chrono::high_resolution_clock::now();
 
     auto int_s = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    auto b = busca_local.performVnd(a);
-    OutputHandler::showInTerminal(a.get_trenos());
-    OutputHandler::showInTerminal(b);
+    //auto b = busca_local.performVnd(a);
+    //OutputHandler::showInTerminal(a.get_trenos());
+    Vnd::re_insertion(&a);
+    Vnd::re_insertion(&a);
+    Vnd::re_insertion(&a);
+    //OutputHandler::showInTerminal(b);
     std::cout << "tempo de execucao: " << int_s.count() << "ms";
     return 0;
 }

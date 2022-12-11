@@ -12,6 +12,7 @@ class Solution
 {
 public:
     Solution();
+    unsigned max_weight;
 
     std::vector<Present> presents;
     std::vector<Treno> trenos;  
@@ -20,10 +21,12 @@ public:
     int get_num_present();
     std::vector<Treno> get_trenos();
     std::vector<Present> get_presents();
+    void set_pair_matrix(std::vector<std::vector<bool>> matrix);
+    std::vector<std::vector<bool>> get_pair_matrix();
 
 
 private:
-   
+    std::vector<std::vector<bool>> pairs_matrix;
 };
 
 #endif

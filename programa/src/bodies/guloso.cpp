@@ -3,6 +3,7 @@
 //
 
 #include <utility>
+#include <algorithm>
 
 #include "../headers/guloso.h++"
 #include "../headers/Solution.h"
@@ -29,7 +30,7 @@ std::vector<Treno> guloso::createSleds(unsigned weight, unsigned quantity) {
 
 /// Se for incompativel retorna false.
 /// Se for compativel returna true.
-bool guloso::verifyCompatibility(Present &present, Treno &treno, std::vector<std::vector<bool>> &presents_pair_matrix) {
+bool guloso::verifyCompatibility(Present &present, Treno &treno, const std::vector<std::vector<bool>> presents_pair_matrix) {
     for (auto present_in_sled : treno.presents_list) {
         if (presents_pair_matrix.at(present.getID()-1).at(present_in_sled.getID()-1))return false;
     }
@@ -85,7 +86,13 @@ Solution guloso::organaziSledUsingWeight(std::vector<unsigned int> weight_list, 
     Present heaviest = presents_list.front();
     std::vector<Present> sorted_presents(presents_list.size());
     Solution solution = Solution();
+    solution.max_weight = max_weight;
+    solution.set_pair_matrix(presents_incomp_pairs_matrix);
     bool added = false;
+
+    for (int i = 0; i < trenos.size(); i++) {
+        trenos.at(i).id = i;
+    }
 
     while (!presents_list.empty()) {
         for (auto present : presents_list) {

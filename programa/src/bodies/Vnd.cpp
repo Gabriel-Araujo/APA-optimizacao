@@ -76,64 +76,41 @@ unsigned Vnd::two_opt(Solution &solut){
 //    }*/
 //
 //    return 1;
+return 1;
 }
 
-unsigned Vnd::re_insertion(Solution &solut){
-    Solution new_solution;
-    guloso guloso_algoritmo = guloso(this->input);
-    int objective = solut.get_num_trenos();
 
-    for (auto a = solut.presents.begin(); a < solut.presents.end()-2; a++) {
-        for (auto b = a+2; b < solut.presents.end(); b++) {
-            solut.presents.insert(b, *a);
+unsigned Vnd::re_insertion(Solution *solut) {
+    std::vector<Treno> old_solution = solut->get_trenos();
 
-            new_solution = guloso_algoritmo.organaziSled(solut);
-            if (objective < new_solution.get_num_trenos()) {
-                solut = new_solution;
-                return -2;
-            }
+    for (int t = 0; t < solut->trenos.size(); t++) {
+        distribuir_itens(&solut->trenos.at(t), &solut->trenos, solut->get_pair_matrix());
+        solut->trenos = guloso::remove_unused_sled(solut->trenos, solut->max_weight);
+        if (solut->trenos.size() < old_solution.size()) {
+            return -2;
         }
+        solut->trenos.swap(old_solution);
     }
-
-//    for(int i = 0; i < solut.presents.size()-2; i++){
-//        for(int j = i + 2; j < solut.presents.size(); j++){
-//
-//            aux = solut.presents[i];
-//            solut.presents.insert(j, solut);
-//
-//            new_solution = guloso_algoritmo.organaziSled(solut);
-//            if(objective < new_solution.get_num_trenos()){
-//                solut = new_solution;
-//                return -2;
-//            }
-//        }
-//
-//    }
-
     return 1;
 }
 
-unsigned Vnd::re_insertion2(Solution &solut) {
-    int pos = 0;
-    auto new_solution = Solution();
-    std::list<Treno> lista_trenos (solut.get_num_trenos());
 
-    for (auto item : solut.get_trenos()) {
-        item.id = pos;
-        lista_trenos.push_back(item);
-        pos++;
-    }
+void Vnd::distribuir_itens(Treno *treno, std::vector<Treno> *trenos, std::vector<std::vector<bool>> matrix) {
+    for (int pos = 0; pos < trenos->size(); pos++) {
+        if (treno->id == trenos->at(pos).id) continue;
 
-    for (auto element = lista_trenos.begin(); element != lista_trenos.end(); element++) {
-        Treno temp = *element;
-        lista_trenos.remove(*element);
-
-        for (auto &element2 : lista_trenos) {
-            for (presentes : lista_trenos)
+        for (int pos_presente = 0; pos_presente < treno->presents_list.size(); pos_presente++) {
+            if (guloso::verifyCompatibility(treno->presents_list.at(pos_presente), trenos->at(pos), matrix)) {
+                if (treno->presents_list.at(pos_presente).getWeight() <= trenos->at(pos).max_weight) {
+                    trenos->at(pos).presents_list.push_back(treno->presents_list.at(pos_presente));
+                    trenos->at(pos).max_weight -= treno->presents_list.at(pos_presente).getWeight();
+                    treno->removerPresente(treno->presents_list.at(pos_presente).getID());
+                }
+            }
         }
     }
-
 }
+
 Solution Vnd::performVnd(Solution solv)
 {
     unsigned k = 1;
@@ -149,7 +126,7 @@ Solution Vnd::performVnd(Solution solv)
             k += two_opt(solv);
             break;
         case 3:
-            k += re_insertion(solv);
+            k += re_insertion(&solv);
             break;
         }
     }
