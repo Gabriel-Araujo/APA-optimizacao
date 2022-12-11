@@ -111,7 +111,7 @@ void Vnd::distribuir_itens(Treno *treno, std::vector<Treno> *trenos, std::vector
     }
 }
 
-Solution Vnd::performVnd(Solution solv)
+Solution Vnd::performVnd(Solution *solv)
 {
     unsigned k = 1;
     Solution actual_solution;
@@ -120,16 +120,16 @@ Solution Vnd::performVnd(Solution solv)
         switch(k)
         {
         case 1:
-            k += swap(solv);
+            k += swap(*solv);
             break;
         case 2:
-            k += two_opt(solv);
+            k += two_opt(*solv);
             break;
         case 3:
-            k += re_insertion(&solv);
+            k += re_insertion(solv);
             break;
         }
     }
 
-    return solv;
+    return *solv;
 }

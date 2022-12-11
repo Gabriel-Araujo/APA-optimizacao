@@ -13,7 +13,7 @@ public:
     Vnd();
     Vnd(InputHandler input);
 
-    Solution performVnd(Solution solv);
+    Solution performVnd(Solution *solv);
     unsigned swap(Solution &solution_atual);
     unsigned two_opt(Solution &solution_atual);
     static unsigned int re_insertion(Solution *solut);
