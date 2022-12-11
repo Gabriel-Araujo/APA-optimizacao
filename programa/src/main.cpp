@@ -15,7 +15,7 @@
 #include "headers/guloso.h++"
 #include "headers/Vnd.h"
 
-const std::string FILENAME = "../instances/n30_k150_C.txt";
+const std::string FILENAME = "../instances/n120_k150_B.txt";
 
 int main() {
     InputHandler input = InputHandler();

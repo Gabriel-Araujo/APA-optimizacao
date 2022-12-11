@@ -48,38 +48,13 @@ std::vector<Treno> guloso::remove_unused_sled(std::vector<Treno> &trenos, unsign
     return new_list;
 }
 
-
-Solution guloso::organaziSled(Solution solve) {
-    std::vector<Treno> trenos = guloso::createSleds(this->input.getMaxWeight(), this->input.getSledsNumber());
-    std::vector<Present> presents_list = solve.get_presents();
-    std::vector<std::vector<bool>> pairs_matrix = this->input.getPresentsPairsMatrix();
-    Solution solution = Solution();
-    std::reverse(presents_list.begin(), presents_list.end());
-    bool added = false;
-
-    while (!presents_list.empty()) {
-        Present present = presents_list.back();
-        presents_list.pop_back();
-
-        for (auto &treno : trenos) {
-            if (treno.max_weight != 0 && present.getWeight() <= treno.max_weight ) {
-                if(verifyCompatibility(present, treno, pairs_matrix)) {
-                    treno.presents_list.push_back(present);
-                    treno.max_weight -= present.getWeight();
-                    added = true;
-                    break;
-                }
-            }
-        }
-        if (!added) {
-                trenos.emplace_back(this->input.getMaxWeight(), std::vector<Present> (0));
-                trenos.back().presents_list.push_back(present);
-        }
-    }
-    solution.trenos = remove_unused_sled(trenos, this->input.getMaxWeight());
-    return solution;
-}
-
+/// Retorna uma solução com a estrutura:
+/// um vetor de trenos, que cada treno contem um vetor de presentes.
+/// \param weight_list
+/// \param sleds_number
+/// \param max_weight
+/// \param presents_incomp_pairs_matrix
+/// \return retorna uma Solution
 Solution guloso::organaziSledUsingWeight(std::vector<unsigned int> weight_list, unsigned int sleds_number, unsigned int max_weight, std::vector<std::vector<bool>> presents_incomp_pairs_matrix) {
     std::vector<Treno> trenos = guloso::createSleds(max_weight, sleds_number);
     std::list<Present> presents_list = guloso::generatePresentList(weight_list);
@@ -95,13 +70,13 @@ Solution guloso::organaziSledUsingWeight(std::vector<unsigned int> weight_list, 
     }
 
     while (!presents_list.empty()) {
-        for (auto present : presents_list) {
+        for (auto present : presents_list) { // acho o presente mais pesado.
             if (present.getWeight() > heaviest.getWeight()) {
                 heaviest = present;
             }
         }
 
-        for (auto &treno : trenos) {
+        for (auto &treno : trenos) { // percorre os trenos tentando colocar o presente mais pesado
             if (treno.max_weight != 0 && heaviest.getWeight() < treno.max_weight) {
                 if (verifyCompatibility(heaviest, treno, presents_incomp_pairs_matrix)) {
                     treno.presents_list.push_back(heaviest);
@@ -112,7 +87,7 @@ Solution guloso::organaziSledUsingWeight(std::vector<unsigned int> weight_list, 
                 }
             }
         }
-        if (!added) {
+        if (!added) { // se não conseguiu adicionar o presente em algum treno, cria um treno para por esse presente.
             trenos.emplace_back(max_weight, std::vector<Present> (0));
             trenos.back().presents_list.push_back(heaviest);
         }
