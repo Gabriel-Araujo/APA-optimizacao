@@ -7,19 +7,19 @@ Vnd::Vnd()
 }
 
 int Vnd::swap(){
-
+    return 0;
 }
 
 int Vnd::two_opt(){
-
+    return 0;
 }
 
 int Vnd::re_insertion(){
-
+    return 0;
 }
 
-std::vector<Present> Vnd::performVnd(Solution solv)
-{
+int Vnd::performVnd(Solution solv) {
+    /*
     int k = 1;
     int new_solution = 0;
     while (k <= 3)
@@ -40,6 +40,6 @@ std::vector<Present> Vnd::performVnd(Solution solv)
             solv.solution = new_solution;
             k++;
         }
-    }
-    
+    }*/
+    return 0;
 }

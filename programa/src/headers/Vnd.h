@@ -4,13 +4,14 @@
 #pragma once
 
 #include "../headers/Solution.h"
+//TODO implementar e refatorar VND
 
 class Vnd {
 
 public:
     Vnd();
 
-    std::vector<Present> performVnd(Solution solv);
+    int performVnd(Solution solv);
     int swap();
     int two_opt();
     int re_insertion();

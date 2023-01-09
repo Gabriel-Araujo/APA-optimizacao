@@ -124,6 +124,6 @@ const std::vector<unsigned>& InputHandler::getWeights() const {
 }
 
 
-std::vector<std::vector<bool>>& InputHandler::getPresentsPairsMatrix() const{
+std::vector<std::vector<bool>>& InputHandler::getPresentsPairsMatrix(){
     return presents_pair_matrix;
 }

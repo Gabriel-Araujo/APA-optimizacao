@@ -36,6 +36,7 @@ void GreedyAlgorithm::organizeSleds() {
             solution.getMutSledsList().emplace_back(solution.getSledsQuantity()+1, solution.getMaxWeightPerSled());
             solution.getMutSledsList().back().addPresent(present);
         }
+            added = false;
     }
 }
 

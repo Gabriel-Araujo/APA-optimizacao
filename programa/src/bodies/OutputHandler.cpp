@@ -10,9 +10,9 @@ void OutputHandler::showInTerminal(const std::vector<Sled>& trenos) {
     for (int treno = 0; treno < trenos.size(); treno++) {
         Sled __treno = trenos.at(treno);
         std::cout << "Sled " << treno+1 << std::endl;
-        std::cout << "Peso atual: " << __treno.max_weight << std::endl;
+        std::cout << "Peso atual: " << __treno.getMaxWeight() << std::endl;
 
-        for (auto present : __treno.presents_list) {
+        for (auto present : __treno.getPresentsList()) {
             std::cout << "Presente " << present.getID() << ", peso " << present.getWeight() << std::endl;
         }
         std::cout << std::endl;

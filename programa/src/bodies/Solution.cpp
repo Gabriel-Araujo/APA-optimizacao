@@ -10,7 +10,8 @@ Solution::Solution(unsigned sleds_quantity, unsigned max_weight) {
 void Solution::makePresentsList(const std::vector<unsigned int> &weight_list) {
     unsigned weight_id = 0;
     for (unsigned weight : weight_list) {
-        presents_list.emplace_back(weight, weight_id);
+        presents_list.emplace_back(weight_id, weight);
+        weight_id++;
     }
     std::sort(presents_list.begin(), presents_list.end());
 }

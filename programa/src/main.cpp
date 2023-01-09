@@ -13,9 +13,8 @@
 #include "headers/InputHandler.h++"
 #include "headers/OutputHandler.h++"
 #include "headers/GreedyAlgorithm.h++"
-#include "headers/Sled.h"
 
-const std::string FILENAME = "../instances/n30_k150_A.txt";
+const std::string FILENAME = "../instances/n1000_k200_A.txt";
 
 int main() {
     InputHandler input = InputHandler(FILENAME);
