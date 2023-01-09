@@ -18,6 +18,7 @@ private:
 
 public:
     Present();
+    Present(unsigned id, unsigned weight): id{id}, weight{weight} {};
     bool operator == (const Present& p) const;
 
     void setWeight(unsigned weight);
