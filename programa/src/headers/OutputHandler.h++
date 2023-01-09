@@ -8,11 +8,11 @@
 #include <iostream>
 #include <vector>
 #include "guloso.h++"
-#include "Treno.h"
+#include "Sled.h"
 
 class OutputHandler {
 public:
-    static void showInTerminal(const std::vector<Treno>& trenos);
+    static void showInTerminal(const std::vector<Sled>& trenos);
 };
 
 

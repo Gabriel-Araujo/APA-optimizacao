@@ -4,7 +4,7 @@
 #pragma once
 
 #include "../headers/Present.h++"
-#include "../headers/Treno.h"
+#include "../headers/Sled.h"
 #include <vector>
 
 class Solution
@@ -14,9 +14,9 @@ public:
 
     int solution;
     std::vector<Present> orderly_presents;
-    std::vector<Treno> trenos;  // trenos.size() eh o numero objetivo
+    std::vector<Sled> trenos;  // trenos.size() eh o numero objetivo
 
-    int get_num_trenos(std::vector<Treno> );
+    int get_num_trenos(std::vector<Sled> );
 
 private:
    

@@ -12,8 +12,8 @@
 
 class Present {
 private:
-    unsigned weight;
-    unsigned id; // posição do presente no array inicial
+    unsigned int id; // posição do presente no array inicial
+    unsigned int weight;
 
 
 public:
@@ -21,11 +21,11 @@ public:
     bool operator == (const Present& p) const;
 
     void setWeight(unsigned weight);
-
-    unsigned getWeight(); // lista de Adjacência
-    unsigned int getID();
-
     void setID(unsigned int pos);
+
+    unsigned int getWeight() const;
+    unsigned int getID() const;
+
 };
 
 

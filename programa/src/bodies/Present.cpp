@@ -7,8 +7,8 @@
 #include "../headers/Present.h++"
 
 Present::Present() {
-    this->weight = 0;
-    this->id = 0;
+    weight = 0;
+    id = 0;
 }
 
 
@@ -22,12 +22,12 @@ void Present::setID(unsigned int pos) {
 }
 
 
-unsigned int Present::getWeight() {
+unsigned int Present::getWeight() const {
     return this->weight;
 }
 
 
-unsigned int Present::getID() {
+unsigned int Present::getID() const {
     return this->id;
 }
 

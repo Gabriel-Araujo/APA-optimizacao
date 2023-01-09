@@ -16,14 +16,14 @@ private:
 
 public:
 
-    static std::vector<Treno> createSleds(unsigned weight, unsigned quantity);
+    static std::vector<Sled> createSleds(unsigned weight, unsigned quantity);
 
     Solution organaziSled(std::vector<unsigned int> weight_list, unsigned int sleds_number, unsigned int max_weight,
                       std::vector<std::vector<bool>> presents_pair_matrix);
 
-    bool verifyCompatibility(Present &present, Treno &treno, std::vector<std::vector<bool>> &presents_pair_matrix);
+    bool verifyCompatibility(Present &present, Sled &treno, std::vector<std::vector<bool>> &presents_pair_matrix);
 
-    std::vector<Treno> remove_unused_sled(std::vector<Treno> &trenos, unsigned int max_weight);
+    std::vector<Sled> remove_unused_sled(std::vector<Sled> &trenos, unsigned int max_weight);
 
     Solution
     organaziSledUsingWeight(std::vector<unsigned int> weight_list, unsigned int sleds_number, unsigned int max_weight,

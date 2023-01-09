@@ -5,7 +5,7 @@ Solution::Solution()
 
 }
 
-int Solution::get_num_trenos(std::vector<Treno> trenos){
+int Solution::get_num_trenos(std::vector<Sled> trenos){
     return trenos.size();
 }
 

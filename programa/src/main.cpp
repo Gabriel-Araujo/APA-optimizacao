@@ -13,7 +13,7 @@
 #include "headers/InputHandler.h++"
 #include "headers/OutputHandler.h++"
 #include "headers/guloso.h++"
-#include "headers/Treno.h"
+#include "headers/Sled.h"
 
 const std::string FILENAME = "../instances/n30_k150_A.txt";
 
