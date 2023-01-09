@@ -35,3 +35,7 @@ unsigned int Present::getID() const {
 bool Present::operator==(const Present &p) const {
     return this->id == p.id;
 }
+
+bool Present::operator<(const Present &p) const {
+    return weight < p.weight;
+}
