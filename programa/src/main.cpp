@@ -18,12 +18,11 @@
 const std::string FILENAME = "../instances/n30_k150_A.txt";
 
 int main() {
-    InputHandler input = InputHandler();
+    InputHandler input = InputHandler(FILENAME);
     guloso ordenacao = guloso();
-    input.readFile(FILENAME);
 
     auto start = std::chrono::high_resolution_clock::now();
-    auto a = ordenacao.organaziSledUsingWeight(input.getWeights(), input.getSledsNumber(), input.getMaxWeight(), input.getPresentsPairsMatrix());
+    auto a = ordenacao.organaziSledUsingWeight(input.getWeights(), input.getSledsQuantity(), input.getMaxWeightPerSled(), input.getPresentsPairsMatrix());
     auto end = std::chrono::high_resolution_clock::now();
 
     auto int_s = std::chrono::duration_cast<std::chrono::microseconds>(end - start);

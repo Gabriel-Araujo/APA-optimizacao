@@ -15,25 +15,21 @@
 
 #include "fileNotFoundError.h++"
 
-struct FileHeader {
-    std::string name;
+
+class InputHandler {
+private:
+    std::string file_name;
     unsigned long presents_number;
     unsigned long sleds_number;
     unsigned long max_weight;
     unsigned long array_L_length;
-};
-
-
-class InputHandler {
-private:
-    FileHeader fileHeader;
     std::vector<unsigned> weights;
-    std::vector<std::array<unsigned, 2>> presents_pairs;
     std::vector<std::vector<bool>> presents_pair_matrix;
 
 
 public:
     InputHandler();
+    explicit InputHandler(const std::string& filename);
     ~InputHandler();
 
 
@@ -41,17 +37,16 @@ public:
 
     void loadFileHeader(std::ifstream &file);
     void loadWeightsArray(std::ifstream &file);
-    void loadPresentsPairs(std::ifstream &file);
     void loadPresentsPairsMatrix(std::ifstream &file);
 
-    unsigned getPresentsNumber();
-    unsigned getSledsNumber();
-    unsigned getMaxWeight();
-    unsigned getArrayLLength();
-    std::vector<unsigned> getWeights();
-    std::vector<std::array<unsigned, 2>> getPresentsPairs();
+    unsigned getPresentsQuantity() const;
+    unsigned getSledsQuantity() const;
+    unsigned getMaxWeightPerSled() const;
+    unsigned getArrayLLength() const;
 
-    std::vector<std::vector<bool>> getPresentsPairsMatrix();
+    [[nodiscard]] const std::vector<unsigned>& getWeights() const;
+
+    [[nodiscard]] const std::vector<std::vector<bool>>& getPresentsPairsMatrix() const;
 };
 
 

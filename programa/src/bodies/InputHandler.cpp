@@ -8,23 +8,28 @@
 
 
 InputHandler::InputHandler() {
-    fileHeader = {
-            "",
-            0,
-            0,
-            0,
-    };
+    presents_number = 0;
+    sleds_number = 0;
+    max_weight = 0;
+    array_L_length = 0;
 }
 
-InputHandler::~InputHandler() {
+
+InputHandler::InputHandler(const std::string& filename) {
+    presents_number = 0;
+    sleds_number = 0;
+    max_weight = 0;
+    array_L_length = 0;
+    readFile(filename);
 }
+
+InputHandler::~InputHandler() = default;
 
 
 void InputHandler::readFile(const std::string& filename) {
     std::ifstream file_handler(filename, std::ifstream::in);
     loadFileHeader(file_handler);
     loadWeightsArray(file_handler);
-    //loadPresentsPairs(file_handler);
     loadPresentsPairsMatrix(file_handler);
     file_handler.close();
 }
@@ -54,11 +59,11 @@ void InputHandler::loadFileHeader(std::ifstream &file) {
     getline(file, _max_weight);
     getline(file, _array_L_length);
 
-    this->fileHeader.name = _name;
-    this->fileHeader.presents_number = stoi(_presents_number);
-    this->fileHeader.sleds_number = stoi(_sleds_number);
-    this->fileHeader.max_weight = stoi(_max_weight);
-    this->fileHeader.array_L_length = stoi(_array_L_length);
+    file_name = _name;
+    presents_number = stoi(_presents_number);
+    sleds_number = stoi(_sleds_number);
+    max_weight = stoi(_max_weight);
+    array_L_length = stoi(_array_L_length);
     getline(file, _name);
 }
 
@@ -67,7 +72,7 @@ void InputHandler::loadWeightsArray(std::ifstream &file) {
     std::string array_line;
     std::string number_string;
 
-    for (int i = 0; i < this->fileHeader.presents_number; i++) {
+    for (int _ = 0; _ < presents_number; _++) {
         getline(file, array_line, ' ');
         this->weights.push_back(std::stoul(array_line));
     }
@@ -75,68 +80,50 @@ void InputHandler::loadWeightsArray(std::ifstream &file) {
 }
 
 
-void InputHandler::loadPresentsPairs(std::ifstream &file) {
-    std::string number1, number2;
-    unsigned number11, number22;
-    while (!file.eof()) {
-        getline(file, number1, ' ');
-        getline(file, number2, '\n');
-        if (number1 == "" || number2 == "") continue;
-        number11 = std::stoul(number1);
-        number22 = std::stoul(number2);
-        std::array<unsigned, 2> _temp = {number11, number22};
-        this->presents_pairs.push_back(_temp);
-    }
-}
-
-
 void InputHandler::loadPresentsPairsMatrix(std::ifstream &file) {
-    std::vector<std::vector<bool>> return_matrix (this->fileHeader.presents_number+1, std::vector<bool> (this->fileHeader.presents_number+1, false));
-    std::string number_1, number_2;
-    unsigned number_11, number_22;
+    std::vector<std::vector<bool>> return_matrix (presents_number+1, std::vector<bool> (presents_number+1, false));
+    std::string number_1_str, number_2_str;
+    unsigned number_1, number_2;
 
     while (!file.eof()) {
-        getline(file, number_1, ' ');
-        getline(file, number_2, '\n');
-        if (number_1 == "" || number_2 == "") continue;
-        number_11 = std::stoul(number_1);
-        number_22 = std::stoul(number_2);
+        getline(file, number_1_str, ' ');
+        getline(file, number_2_str, '\n');
+        if (number_1_str.empty() || number_2_str.empty()) continue;
+        number_1 = std::stoul(number_1_str);
+        number_2 = std::stoul(number_2_str);
 
-        return_matrix.at(number_11).at(number_22) = true;
+        return_matrix.at(number_1).at(number_2) = true;
+        return_matrix.at(number_2).at(number_1) = true;
     }
     this->presents_pair_matrix = return_matrix;
 }
 
 
-unsigned InputHandler::getPresentsNumber() {
-    return this->fileHeader.presents_number;
+unsigned InputHandler::getPresentsQuantity() const{
+    return presents_number;
 }
 
 
-unsigned InputHandler::getSledsNumber() {
-    return this->fileHeader.sleds_number;
+unsigned InputHandler::getSledsQuantity() const {
+    return sleds_number;
 }
 
 
-unsigned int InputHandler::getMaxWeight() {
-    return this->fileHeader.max_weight;
+unsigned int InputHandler::getMaxWeightPerSled() const {
+    return max_weight;
 }
 
 
-unsigned int InputHandler::getArrayLLength() {
-    return this->fileHeader.array_L_length;
+unsigned int InputHandler::getArrayLLength() const {
+    return array_L_length;
 }
 
 
-std::vector<unsigned> InputHandler::getWeights() {
-    return this->weights;
-}
-
-std::vector<std::array<unsigned, 2>> InputHandler::getPresentsPairs() {
-    return this->presents_pairs;
+const std::vector<unsigned>& InputHandler::getWeights() const {
+    return weights;
 }
 
 
-std::vector<std::vector<bool>> InputHandler::getPresentsPairsMatrix() {
-    return this->presents_pair_matrix;
+const std::vector<std::vector<bool>>& InputHandler::getPresentsPairsMatrix() const {
+    return presents_pair_matrix;
 }
