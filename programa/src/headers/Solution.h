@@ -26,6 +26,7 @@ public:
     const std::vector<Sled>& getSledsList() const;
     std::vector<Sled>& getMutSledsList();
     const std::vector<Present>& getPresentsList()const;
+    const std::vector<std::vector<bool>>& getIncompatibilityMatrix() const;
 
     unsigned getSledsQuantity() const;
     unsigned getMaxWeightPerSled() const;

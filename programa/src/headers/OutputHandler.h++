@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <vector>
-#include "guloso.h++"
+#include "GreedyAlgorithm.h++"
 #include "Sled.h"
 
 class OutputHandler {

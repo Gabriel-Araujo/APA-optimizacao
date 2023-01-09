@@ -49,3 +49,8 @@ unsigned int Solution::getMaxWeightPerSled() const {
 unsigned int Solution::getMaxSledQuantity() const {
     return max_sleds_quantity;
 }
+
+
+const std::vector<std::vector<bool>> &Solution::getIncompatibilityMatrix() const {
+    return incompatibility_matrix;
+}

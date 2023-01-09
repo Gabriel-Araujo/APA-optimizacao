@@ -12,22 +12,27 @@
 
 #include "headers/InputHandler.h++"
 #include "headers/OutputHandler.h++"
-#include "headers/guloso.h++"
+#include "headers/GreedyAlgorithm.h++"
 #include "headers/Sled.h"
 
 const std::string FILENAME = "../instances/n30_k150_A.txt";
 
 int main() {
     InputHandler input = InputHandler(FILENAME);
-    guloso ordenacao = guloso();
+    Solution solution = Solution(input.getSledsQuantity(), input.getMaxWeightPerSled());
+
+    solution.makePresentsList(input.getWeights());
+    solution.setIncompatibilityMatrix(input.getPresentsPairsMatrix());
+
+    GreedyAlgorithm ordenacao = GreedyAlgorithm(solution);
 
     auto start = std::chrono::high_resolution_clock::now();
-    auto a = ordenacao.organaziSledUsingWeight(input.getWeights(), input.getSledsQuantity(), input.getMaxWeightPerSled(), input.getPresentsPairsMatrix());
+    ordenacao.run();
     auto end = std::chrono::high_resolution_clock::now();
 
     auto int_s = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 
-    OutputHandler::showInTerminal(a.trenos);
+    //OutputHandler::showInTerminal(a.trenos);
     std::cout << "tempo de execução: " << int_s.count() << "µs";
     return 0;
 }

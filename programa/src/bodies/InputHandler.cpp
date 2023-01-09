@@ -83,7 +83,7 @@ void InputHandler::loadWeightsArray(std::ifstream &file) {
 void InputHandler::loadPresentsPairsMatrix(std::ifstream &file) {
     std::vector<std::vector<bool>> return_matrix (presents_number+1, std::vector<bool> (presents_number+1, false));
     std::string number_1_str, number_2_str;
-    unsigned number_1, number_2;
+    unsigned number_1, number_2 = 0;
 
     while (!file.eof()) {
         getline(file, number_1_str, ' ');
@@ -124,6 +124,6 @@ const std::vector<unsigned>& InputHandler::getWeights() const {
 }
 
 
-const std::vector<std::vector<bool>>& InputHandler::getPresentsPairsMatrix() const {
+std::vector<std::vector<bool>>& InputHandler::getPresentsPairsMatrix() const{
     return presents_pair_matrix;
 }

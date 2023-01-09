@@ -21,6 +21,7 @@ void Sled::subWeight(unsigned int weight) {
 
 
 void Sled::addPresent(Present present) {
+    current_weight += present.getWeight();
     presents_list.push_back(present);
 }
 

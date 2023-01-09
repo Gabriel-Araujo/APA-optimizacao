@@ -46,7 +46,7 @@ public:
 
     [[nodiscard]] const std::vector<unsigned>& getWeights() const;
 
-    [[nodiscard]] const std::vector<std::vector<bool>>& getPresentsPairsMatrix() const;
+    [[nodiscard]] std::vector<std::vector<bool>>& getPresentsPairsMatrix() const;
 };
 
 

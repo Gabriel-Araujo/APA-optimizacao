@@ -13,8 +13,8 @@ add_executable(APA
         programa/src/headers/Present.h++
         programa/src/bodies/FactoryPresent.cpp
         programa/src/headers/FactoryPresent.h++
-        programa/src/bodies/guloso.cpp
-        programa/src/headers/guloso.h++
+        programa/src/bodies/GreedyAlgorithm.cpp
+        programa/src/headers/GreedyAlgorithm.h++
         programa/src/bodies/OutputHandler.cpp
         programa/src/headers/OutputHandler.h++
         programa/src/headers/Sled.h
