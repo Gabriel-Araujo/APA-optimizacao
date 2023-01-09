@@ -6,20 +6,30 @@
 #include "../headers/Present.h++"
 #include "../headers/Sled.h"
 #include <vector>
+#include <algorithm>
 
-class Solution
-{
-public:
-    Solution();
 
-    int solution;
-    std::vector<Present> orderly_presents;
-    std::vector<Sled> trenos;  // trenos.size() eh o numero objetivo
-
-    int get_num_trenos(std::vector<Sled> );
-
+class Solution {
 private:
-   
+    std::vector<Present> presents_list;
+    std::vector<Sled> sleds_list;
+    std::vector<std::vector<bool>> incompatibility_matrix;
+    unsigned max_sleds_quantity;
+    unsigned max_weight_per_sled;
+
+public:
+    Solution(unsigned sleds_quantity, unsigned max_weight);
+
+    void makePresentsList(const std::vector<unsigned>& weight_list);
+    void setIncompatibilityMatrix(std::vector<std::vector<bool>>& matrix);
+
+    const std::vector<Sled>& getSledsList() const;
+    std::vector<Sled>& getMutSledsList();
+    const std::vector<Present>& getPresentsList()const;
+
+    unsigned getSledsQuantity() const;
+    unsigned getMaxWeightPerSled() const;
+    unsigned getMaxSledQuantity() const;
 };
 
 #endif

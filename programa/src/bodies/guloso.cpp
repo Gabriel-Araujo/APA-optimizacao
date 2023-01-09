@@ -69,7 +69,7 @@ Solution guloso::organaziSled(std::vector<unsigned int> weight_list, unsigned sl
                 trenos.back().presents_list.push_back(present);
             }
     }
-    solution.orderly_presents = sorted_presents;
+    solution.presents_list = sorted_presents;
     solution.trenos = remove_unused_sled(trenos, max_weight);
     return solution;
 }
@@ -109,7 +109,7 @@ Solution guloso::organaziSledUsingWeight(std::vector<unsigned int> weight_list, 
         heaviest = presents_list.front();
     }
     
-    solution.orderly_presents = sorted_presents;
+    solution.presents_list = sorted_presents;
     solution.trenos = remove_unused_sled(trenos, max_weight);
     return solution;
 }
